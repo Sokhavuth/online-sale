@@ -41,3 +41,5 @@ const port = process.env.PORT || 8000
 app.listen(port,()=>{
   console.log(`This app is listening to the port ${port}`)
 })
+
+export default app
