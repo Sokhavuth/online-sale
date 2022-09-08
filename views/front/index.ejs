@@ -1,0 +1,67 @@
+<!--views/front/index.ejs-->
+<link rel="stylesheet" href="/styles/front/index.css" />
+
+<section class="Header">
+    <div class="outer">
+        <div class="header region">
+            <div class="logo"><a href="/"><%= data.siteTitle %></a></div>
+            <form action="/search" method="post">
+                <select name="fsearch">
+                    <option>ទាំងអស់</option>
+                    <% for(let category of data.categories){ %>
+                    <option><%= category.title %></option>
+                    <% } %>
+                </select>
+                <input type="text" name="q" required placeholder="Search" />
+                <input type="submit" value="ស្វែង​រក" />
+            </form>
+            <div class="signup">
+                <a href="/login">ចូល​ក្នុង</a> | <a href="/signup">ចុះ​ឈ្មោះ</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="Main">
+    <div class="outer region">
+        <% if(data.route === '/'){ %>
+            <%- include('home.ejs') %>
+        <% }else if(data.route === '/post'){ %>
+            <%- include('post.ejs') %>
+        <% }else if(data.route === '/category'){ %>
+            <%- include('category.ejs') %>
+        <% }else if(data.route === '/search'){ %>
+            <%- include('search.ejs') %>
+        <% } %>
+    </div>
+</section>
+
+<section class="Footer">
+    <div class="outer region">
+        <div class="contact">
+            <div class="title">ទំនាក់ទំនង</div>
+            <ul>
+                <li>Email: vuthdevelop@gmail.com</li>
+                <li>គេហទំព័រៈ https://www.khmerweb.vercel.app</li>
+            </ul>
+            
+        </div>
+        <div class="conduct">
+            <div class="title">ក្រម​សីលធម៌</div>
+            <ul>
+                <li>អំពី​ការទទួល​ខុស​ត្រូវ</li>
+                <li>អំពី​ឯកជនភាព</li>
+            </ul>
+            
+        </div>
+        <div class="smedia">
+            <div class="title">របៀប​ប្រើប្រាស់</div>
+            <ul>
+                <li>របៀប​ចុះ​ឈ្មោះ</li>
+                <li>របៀប​ចុះ​ផ្សាយ</li>
+            </ul>
+            
+        </div>
+    </div>
+    <div class="credit">&copy; 2022 <a href="https://khmerweb.vercel.app/">Khmer Web</a></div>
+</section>

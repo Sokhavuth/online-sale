@@ -1,0 +1,45 @@
+/* static/styles/front/signup.css */
+.Signup .outer{
+    max-width: 500px;
+    margin: 100px auto;
+    background: var(--background);
+}
+
+.Signup .outer .title{
+    padding: 5px;
+    text-align: center;
+    border-bottom: 1px solid grey;
+    font: 22px/1.5 Oswald,Limonf3;
+}
+
+.Signup .outer form{
+    display: grid;
+    grid-template-columns: 28% auto;
+    grid-gap: 5px;
+    align-items: center;
+    padding: 20px;
+}
+
+.Signup .outer form a{
+    text-align: right;
+    color: black;
+}
+
+.Signup .outer form input{
+    font: var(--body-font);
+    padding: 2px 5px;
+}
+
+.Signup .outer form .info{
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px){
+    .Signup .outer form{
+        grid-template-columns: 100%;
+    }
+
+    .Signup .outer form a{
+        text-align: left;
+    }
+}

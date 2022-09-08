@@ -1,0 +1,15 @@
+/* static/styles/admin/user.css */
+.User form .ck-editor__editable{
+    min-height: 300px;
+}
+
+.User form .wrapper{
+    display: grid;
+    grid-template-columns: auto auto 20%;
+}
+
+.User form input,.User form select{
+    font: var(--body-font);
+    width: 100%;
+    padding: 2px 5px;
+}

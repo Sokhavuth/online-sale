@@ -1,0 +1,104 @@
+<!--views/admin/index.ejs-->
+<link rel="stylesheet" href="/styles/admin/index.css" />
+<script src="/scripts/paginate.js"></script>
+
+<section class="Header">
+    <div class="wrapper region">
+        <div class="logo"><%= data.pageTitle %></div>
+        <form action="/admin/search" method="post">
+            <select name="adminSelect">
+                <option>ទំនិញ</option>
+                <% if(data.user.role in {'Admin':1,'Editor':1}){ %>
+                <option>ប្រភេទ</option>
+                <% } %>
+            </select>
+            <input type="text" name="q" placeholder="Search" required />
+            <input type="submit" value="ស្វែង​រក" />
+        </form>
+        <div class="logout"><a href="/">ទំព័រ​មុខ</a> | <a href="/login/logout">ចេញក្រៅ</a></div>
+    </div>
+</section>
+
+<section class="Main">
+    <div class="wrapper region">
+        <div class="sidebar">
+            <div class="inner">
+                <a href="/admin/post"><img src="/images/bigsale.png" /></a>
+                <a href="/admin/post" class="title">ទំនិញ</a>
+                <% if(data.user.role in {'Admin':1,'Editor':1}){ %>
+                <a href="/admin/category"><img src="/images/category.png" /></a>
+                <a href="/admin/category" class="title">ប្រភេទ</a>
+                
+
+                <a href="/admin/upload"><img src="/images/upload.png" /></a>
+                <a href="/admin/upload" class="title">Upload</a>
+                <% } %>
+                <a href="/admin/user"><img src="/images/users.png" /></a>
+                <a href="/admin/user" class="title">អ្នក​ប្រើប្រាស់</a>
+                <% if(data.user.role in {'Admin':1,'Editor':1}){ %>
+                <a href="/admin/setting"><img src="/images/setting.png" /></a>
+                <a href="/admin/setting" class="title">Setting</a>
+                <% } %>
+            </div>
+        </div>
+        <div class="content">
+            <% if(data.route === '/admin/category'){ %>
+                <%- include('category.ejs') %>
+            <% }else if(data.route === '/admin/post'){ %>
+                <%- include('post.ejs') %>
+            <% }else if(data.route === '/admin/upload'){ %>
+                <%- include('upload.ejs') %>
+            <% }else if(data.route === '/admin/user'){ %>
+                <%- include('user.ejs') %>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<% if(data.items){ %>
+<section class="Footer region">
+    <% if(data.count){ %>
+        <div class="info">សរុប​ទាំងអស់​មាន​ចំនួនៈ <%= data.count %></div>
+    <% }else{ %>
+        <div class="info">សរុប​ទាំងអស់​មាន​ចំនួនៈ</div>
+    <% } %>
+    <ul class="list">
+            <% for(let item of data.items) { %>
+                <li>
+                    <div class='thumb'>
+                        <a href='/<%= data.type %>/<%= item.id %>'>
+                            <img src='<%= item.thumb %>'/> 
+                        <% if((item.video)&&(item.video !== '[]')){ %>
+                            <img class="play-icon" src="/images/play.png"/>
+                        <% } %>
+                        </a> 
+                    </div>
+                    <div class="title">
+                        <a href="/<%= data.type %>/<%= item.id %>"><%= item.title %></a>
+                        <% if(data.route === '/admin/user'){ %>
+                        <p><%= item.role %></p>
+                        <% } %>
+                        <div><%= (new Date(item.postdate)).toLocaleDateString('it-IT') %></div>
+                    </div>
+                    <div class="edit">
+                        <a href="<%= data.route %>/edit/<%= item.id %>"><img src="/images/edit.png"/></a>
+                        <a href="<%= data.route %>/delete/<%= item.id %>"><img src="/images/delete.png"/></a>
+                    </div> 
+                </li>
+            <% } %>
+    </ul>
+
+    <% if(data.route === '/admin/user'){ %>
+        <script>
+        $('.Footer .list li').css({'grid-template-columns':'13% auto 25%'})
+        $('.Footer .list li .thumb').css({'padding-top':'100%'})
+        $('.Footer .list li .thumb img').css({'border-radius':'50%'})
+        </script>
+    <% } %>
+
+    <div class="pagination">
+        <img onClick="paginate('<%= data.route %>')" src="/images/load-more.png" />
+    </div>
+    <div class="credit">&copy; 2022 <a href="https://khmerweb.vercel.app/">Khmer Web</a></div>
+</section>
+<% } %>

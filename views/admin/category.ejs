@@ -1,0 +1,23 @@
+<!--view/admin/category.ejs-->
+<link rel="stylesheet" href="/styles/admin/category.css" />
+
+<section class="Category">
+    <div class='content'>
+        <% if(data.item){ %>
+        <form action='/admin/category/edit/<%= data.item.id %>' method='post' >
+            <a>ប្រភេទ​ទំនិញៈ</a><input type='text' value="<%= data.item.title %>" name='title' required />
+            <a>តំណរ​ភ្ជាប់​រូបសញ្ញាៈ</a><input type='text' value="<%= data.item.thumb %>" name='thumb' required />
+            <a>ពេល​បង្កើតៈ</a><input type='datetime-local' value='<%= data.item.postdate %>' name="datetime" required />
+            <a></a><input type='submit' value='បញ្ជូនទិន្នន័យ' />
+        </form>
+        <% delete data.item %>
+        <% }else{ %>
+        <form action='/admin/category' method='post' >
+            <a>ប្រភេទ​ទំនិញៈ</a><input type='text' name='title' required />
+            <a>តំណរ​ភ្ជាប់​រូបសញ្ញាៈ</a><input type='text' name='thumb' required />
+            <a>ពេល​បង្កើតៈ</a><input type='datetime-local' value='' name="datetime" required />
+            <a></a><input type='submit' value='បញ្ជូនទិន្នន័យ' />
+        </form>
+        <% } %>
+    </div>
+</section>

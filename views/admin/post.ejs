@@ -1,0 +1,118 @@
+<!--views/admin/post.ejs-->
+<link rel="stylesheet" href="/styles/admin/post.css" />
+<script src="/scripts/ckeditor/ckeditor.js"></script>
+<script src="/scripts/addCategory.js"></script>
+<script src="/scripts/video.js"></script>
+
+<section class="Post">
+    <% if(data.item){ %>
+    <form action="/admin/post/edit/<%= data.item.id %>" method="post">
+        <input type="text" name="title" value="<%= data.item.title %>" 
+        required placeholder="ឈ្មោះ​ទំនិញ" />
+        <textarea name="content" id="editor"><%= data.item.content %></textarea>
+        <input type="text" name="categories" value="<%= data.item.categories.toString() %>" 
+        required placeholder="​​​​​​​​​​​​​​​ប្រភេទទំនិញ" />
+        <div class="wrapper">
+            <select id="category" onChange="getCategory()">
+                <option>ជ្រើសរើស​ប្រភេទ​ទំនិញ</option>
+                <% for(let category of data.categories){ %>
+                    <option><%= category.title %></option>
+                <% } %>
+            </select>
+            <input type="number" name="price" step='0.01' value="<%= data.item.price %>" 
+            required placeholder="$00.00" />
+            <input type="text" name="thumb" value="<%= data.item.thumb %>"
+            required placeholder="តំណរភ្ជាប់​រូប​​​​​​​​​​​​​​​​​​​​​​​​​​តំណាង" />
+            <input type="submit" value="ចុះ​ផ្សាយ" />
+            <input type="tel" name="phone" value="<%= data.item.phone %>"
+            pattern="^[0-9-+\s()]*$" required placeholder="​​លេខ​ទូរស័ព្ទ" />
+            <input type="text" name="location" value="<%= data.item.location %>" 
+            required placeholder="ទី​កន្លែង" />
+            <input type="datetime-local" name="datetime" value="<%= data.item.postdate %>" 
+            required />
+            <input type="button" />
+        </div>
+        <input name='entries' value='<%= data.item.video %>' type='hidden' />
+    </form>
+    <% }else{ %>
+    <form action="/admin/post" method="post">
+        <input type="text" name="title" required placeholder="ឈ្មោះ​ទំនិញ" />
+        <textarea name="content" id="editor"></textarea>
+        <input type="text" name="categories" required placeholder="​​​​​​​​​​​​​​​ប្រភេទទំនិញ" />
+        <div class="wrapper">
+            <select id="category" onChange="getCategory()">
+                <option>ជ្រើសរើស​ប្រភេទ​ទំនិញ</option>
+                <% for(let category of data.categories){ %>
+                    <option><%= category.title %></option>
+                <% } %>
+            </select>
+            <input type="number" name="price" step='0.01' required placeholder="$00.00" />
+            <input type="text" name="thumb" required placeholder="តំណរភ្ជាប់​រូប​​​​​​​​​​​​​​​​​​​​​​​​​​តំណាង" />
+            <input type="submit" value="ចុះ​ផ្សាយ" />
+            <input type="tel" name="phone" pattern="^[0-9-+\s()]*$" required placeholder="​​លេខ​ទូរស័ព្ទ" />
+            <input type="text" name="location" required placeholder="ទី​កន្លែង" />
+            <input type="datetime-local" name="datetime" required />
+            <input type="button" />
+        </div>
+        <input name='entries' value='' type='hidden' />
+    </form>
+    <% } %>
+    
+    <div class='form'>
+        <select name='type'>
+            <option>YouTube</option>
+            <option>YouTubePlaylist</option>
+            <option>Facebook</option>
+            <option>OK</option>
+            <option>Dailymotion</option>
+            <option>Vimeo</option>
+        </select>
+        <input name='id' type='text' placeholder="អត្តសញ្ញាណវីដេអូ" required />
+        <select name='ending'>
+            <option>ចប់​</option>
+            <option>មិន​ទាន់ចប់</option>
+            <option>~ ចប់</option>
+        </select>
+        <input onclick='genJson()' type="button" value="បញ្ចូល​វីដេអូ" />
+    </div>
+
+    <table class='viddata'></table>
+    
+    <% if(data.item){ %>
+        <script>
+            var entries = JSON.parse('<%- data.item.video %>')
+        </script>
+    <% }else{ %>
+        <script>
+            var entries = ''
+        </script>
+    <% } %>
+    <% delete data.item %>
+
+    <script>
+    if(entries.length > 0){
+        let html = ``
+        for(let v in entries){
+            episode += 1
+            html += `<tr>`
+            html += `<td title="Delete" onClick="deleteRow(event)" class="episode">${episode}</td>`
+            html += `<td class="td${episode}">${entries[v].type}</td>`
+            html += `<td class="td${episode}">${entries[v].id}</td>`
+            html += `<td class="td${episode}">${entries[v].ending}</td>`
+            html += `</tr>`
+        }
+
+        if($('.viddata').html() === ''){
+            $('.viddata').append('<tr>')
+            $('.viddata').append('<th>ភាគ/លុប</th>')
+            $('.viddata').append('<th>ប្រភេទ​</th>')
+            $('.viddata').append('<th>អត្តសញ្ញាណ​</th>')
+            $('.viddata').append('<th>ចប់ឬ​នៅ?</th>')
+            $('.viddata').append('</tr>')
+        }
+
+        $('.viddata').append(`${html}`)
+    }
+    </script>
+</section>
+<script src="/scripts/ckeditor/config.js"></script>

@@ -1,0 +1,74 @@
+/* static/styles/front/category.css */
+.Content .outer{
+    display: grid;
+    grid-template-columns: calc(25% - 11.25px) calc(25% - 11.25px) 
+    calc(25% - 11.25px) calc(25% - 11.25px);
+    grid-gap: 15px;
+    margin:  0 auto 15px;
+}
+
+.Content .outer a{
+    position: relative;
+    padding-top: 56.25%;
+    color: white;
+}
+
+.Content .outer a img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.Content .outer a .play-icon{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 20%;
+    height: auto;
+}
+
+.Content .outer a p{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 5px 5px 7px;
+    text-align: left;
+    font: 16px/1.5 Oswald, Bayon;
+    text-shadow: 2px 2px 4px #000000;
+    background: -webkit-linear-gradient(bottom, black,transparent);
+}
+
+.Content .outer a .date{
+    position: absolute;
+    top: 0;
+    left: 5px;
+    padding: 0;
+    background: none;
+    font-size: 14px;
+}
+
+.Content .pagination{
+    text-align: center;
+    background: var(--background);
+    margin-bottom: 45px;
+    padding: 7px 0 2px;
+}
+
+.Content .pagination img{
+    height: 30px;
+}
+
+.Content .pagination img:hover{
+    cursor: pointer;
+    opacity: .7;
+}
+
+@media only screen and (max-width:600px){
+    .Content .outer{
+        grid-template-columns: 100%;
+        padding: 15px;
+    }
+}

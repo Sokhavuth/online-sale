@@ -1,0 +1,39 @@
+/* static/admin/post.css */
+.Post form input,.Post form select,
+.Post .form input,.Post .form select{
+    font: var(--body-font);
+    padding: 2px 5px;
+    width: 100%;
+}
+
+.Post form .ck-editor__editable{
+    min-height: 300px;
+}
+
+.Post form .wrapper,.Post .form{
+    display: grid;
+    grid-template-columns: 25% 30% auto 15%;
+}
+
+.Post table {
+    margin-top: 0px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.Post table, td, th {
+    border: 1px solid black;
+    background: white;
+    color: black;
+    text-align: center;
+    padding: 5px;
+}
+
+.Post table, th {
+    background: #ddd;
+}
+
+.Post table .episode:hover{
+    cursor: pointer;
+    color: red;
+}

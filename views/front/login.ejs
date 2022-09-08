@@ -1,0 +1,66 @@
+<!--views/front/login.ejs-->
+<link rel="stylesheet" href="/styles/front/login.css" />
+
+<section class="Login">
+    <div class="wrapper">
+        <div class="title">ផ្ទៀងផ្ទាត់​ពាក្យ​សំងាត់​ចូល​គណនី​</div>
+        <form action="/login" method="post">
+            <a></a><div class="fb-login-button" data-width="100%" 
+            data-size="large" data-button-type="login_with" 
+            data-layout="default" data-auto-logout-link="false" 
+            data-use-continue-as="false" 
+            onlogin="checkLoginState()"
+            ></div>
+            <a>Email:</a><input type="email" name="email" />
+            <a>ពាក្យ​សំងាត់ៈ</a><input type="password" name="password" />
+            <a></a><input type="submit" value="បញ្ជូន" />
+            <a></a><div class="info"><%= data.message %></div>
+        </form>
+    </div>
+    <a class="signup" href="/signup">ចុះ​ឈ្មោះ​ចុះ​ផ្សាយលក់​ទំនិញ (signup)</a>
+</section>
+
+<script>
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            if(response.authResponse.accessToken){
+                FB.api('/me',function(user) {
+                    const fbuser = {
+                        id: user.id,
+                        name: user.name, 
+                    }
+                
+                    $.post('/login/fbuser',fbuser,function(data,status){
+                        if(data.message){
+                            alert(data.message)
+                            window.location.href = data.redirect
+                        }else{
+                            window.location.href = data.redirect
+                        }
+                    })
+                })
+            }else{
+                alert('​​​​​​​មានបញ្ហា​មិន​អាច​ចុះ​ឈ្មោះ​បាន')
+            }
+        })
+    }
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '3245867309046703',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v14'
+        })
+        
+        FB.AppEvents.logPageView(); 
+    }
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0]
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id
+       js.src = "https://connect.facebook.net/en_US/sdk.js"
+       fjs.parentNode.insertBefore(js, fjs)
+     }(document, 'script', 'facebook-jssdk'))
+  </script>

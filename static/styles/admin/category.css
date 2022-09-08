@@ -1,0 +1,19 @@
+/* static/styles/admin/category.css */
+.Category .content form{
+    width: 70%;
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-gap: 5px;
+    align-items: center;
+}
+ 
+.Category .content form input[type=submit],
+.Category .content form input{
+    font: var(--body-font);
+    padding: 2px 5px;
+}
+ 
+.Category .content form a{
+    text-align: right;
+    color: black;
+}

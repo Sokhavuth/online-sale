@@ -1,0 +1,83 @@
+<!--views/front/post.ejs-->
+<link rel="stylesheet" href="/styles/front/post.css" />
+<script src="/scripts/setPlayer.js"></script>
+
+<script>
+    var fb_api = false
+    window.fbAsyncInit = function(){
+        fb_api = true
+    }
+</script>
+
+<section class="Post">
+    <div class="outer">
+        <div class="content">
+            <div class="title"><%= data.item.title %></div>
+            <div class="wrapper">
+                <span class="price">តំលៃៈ $<%= data.item.price %></span>
+                <span class="postdate">
+                    <%= (new Date(data.item.postdate)).toLocaleDateString('it-IT') %>
+                </span>
+            </div>
+            <div class="phone">ទូរស័ព្ទៈ <%= data.item.phone %></div>
+            <div class="location">ទីកន្លែងៈ <%= data.item.location %></div>
+
+            <% if((data.item.video) && (data.item.video !== "[]")){ %>
+            <div class="video">
+                <div class="screen"></div>
+                <div class="playlist"></div>
+            </div>
+            <script>
+                const videos = JSON.parse('<%- data.item.video %>')
+                let clicked = 0
+
+                for(let index in videos){
+                    let ending = ''
+                    if(index == videos.length-1){
+                        ending = videos[index].ending
+                    }
+                    
+                    let html = `<div id="part${index}" 
+                                class="part" onClick="setScreen(videos[${index}],${index},true)">
+                                    ភាគ​ ${++index} ${ending}
+                                </div>`
+                    $('.playlist').append(html)
+                    setScreen(videos[0],0,false)
+                }
+            </script>
+            <% } %>
+            <article>
+                <%- data.item.content %>
+            </article>
+
+            <div id="disqus_thread"></div>
+        </div>
+        <div class="sidebar">
+            <% if(data.items){ %>
+                <% for(let item of data.items){ %>
+                <a href="/post/<%= item.id %>" class="related_post">
+                    <p class="title"><%= item.title %></p>
+                    <p class="price">តំលៃៈ $<%= item.price %></p>
+                    <p>ទូរស័ព្ទៈ <%= item.phone %></p>
+                    <p>ទីកន្លែងៈ <%= item.location %></p>
+                </a>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<script>
+    var disqus_config = function () {
+    this.page.url = 'https://khmerweb-sale.herokuapp.com/post/<%= data.item.id %>';
+    this.page.identifier =  '<%= data.item.id %>';
+    };
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://khmer-web-sale.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>

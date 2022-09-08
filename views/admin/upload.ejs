@@ -1,0 +1,20 @@
+<!--views/admin/upload.ejs-->
+<link href="/styles/admin/upload.css" rel="stylesheet"></link>
+
+    <div class='Upload'>
+        <% if(data.fileUrl){ %>
+        <form action='/admin/upload' method='post' enctype="multipart/form-data">
+            <input type='file' name='uploadFile' required />
+            <input type='text' value='<%= data.fileUrl %>' 
+                placeholder='តំណរភ្ជាប់ឯ​កសារ​នៅ​លើ Server' />
+            <input type='submit' value='បញ្ជូន​ទិន្នន័យ' />
+        </form>
+        <% delete data.fileUrl %>
+        <% }else{ %>
+        <form action='/admin/upload' method='post' enctype="multipart/form-data">
+            <input type='file' name='uploadFile' required />
+            <input type='text' placeholder='តំណរភ្ជាប់ឯ​កសារ​នៅ​លើ Server' />
+            <input type='submit' value='បញ្ជូន​ទិន្នន័យ' />
+        </form>
+        <% } %>
+    </div>

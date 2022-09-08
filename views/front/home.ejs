@@ -1,0 +1,83 @@
+<!--views/front/home.ejs-->
+<link rel="stylesheet" href="/styles/front/home.css" />
+<script src="/scripts/navigate.js"></script>
+
+<section class="Content">
+    <% if(data.items){ %>
+    <ul class="newest">
+        <% for(let item of data.items){ %>
+        <li class="item">
+            <a class="thumb" href="/post/<%= item.id %>">
+                <img src="<%= item.thumb %>" />
+                <% if((item.video)&&(item.video !== '[]')){ %>
+                <img class="play-icon" src="/images/play.png"/>
+                <% } %>
+            </a>
+            <div>
+                <a class="title" href="/post/<%= item.id %>">
+                    <%= item.title %>
+                </a>
+                <p class="price">$<%= item.price %></p>
+                <p class="postdate"><%= (new Date(item.postdate)).toLocaleDateString('it-IT') %></p>
+            </div>
+        </li>
+        <% } %>
+    </ul>
+    <div class="pagination">
+        <img onclick="navigate.getItem(-1)" src="/images/left.png" />
+        <img class="home" onclick="navigate.getItem(0)" src="/images/home.png" />
+        <img onclick="navigate.getItem(1)" src="/images/right.png" />
+    </div>
+    <% } %>
+
+    <div class="outer">
+        <a href="/category/ដី​ធ្លី">
+            <img src="/images/land.png" />
+            <p>​​​​​​​ដីឡូតិ៍</p>
+        </a>
+        <a href="/category/លំនៅ​ដ្ឋាន">
+            <img src="/images/housing.png" />
+            <p>​​​​​​​លំនៅដ្ឋាន</p>
+        </a>
+        <a href="/category/រថយន្ត">
+            <img src="/images/car.png" />
+            <p>​​​​​​​រថយន្ត</p>
+        </a>
+        <a href="/category/ទោចក្រយានយន្ត">
+            <img src="/images/motorbike.jpg" />
+            <p>​​​​​​​ទោចក្រយានយន្ត</p>
+        </a>
+        <a href="/category/គ្រឿង​អេឡិចត្រូនិក">
+            <img src="/images/electronic.jpeg" />
+            <p>​​​​​​​គ្រឿង​ Electronic</p>
+        </a>
+        <a href="/category/គ្រឿង​សង្ហារឹម">
+            <img src="/images/furniture.jpg" />
+            <p>​​​​​​​គ្រឿង​​សង្ហារឹម</p>
+        </a>
+        <a href="/category/សំភារៈ​កីឡា">
+            <img src="/images/sport.jpg" />
+            <p>​​​​​​​សំភារៈ​កីឡា</p>
+        </a>
+        <a href="/category/សំលៀកបំពាក់">
+            <img src="/images/clothes.png" />
+            <p>សំលៀក​បំពាក់</p>
+        </a>
+        <a href="/category/ស្បែក​ជើង​">
+            <img src="/images/shoe.png" />
+            <p>ស្បែក​ជើង</p>
+        </a>
+        <a href="/category/គ្រឿង​សំអាង">
+            <img src="/images/cosmetic.png" />
+            <p>គ្រឿង​សំអាង</p>
+        </a>
+        <a href="/category/សៀវភៅ">
+            <img src="/images/bookstore.png" />
+            <p>សៀវភៅ</p>
+        </a>
+        <a href="/category/ភេសជ្ជៈ​-​ម្ហូប​អាហារ">
+            <img src="/images/food-drink.png" />
+            <p>ភេសជ្ជៈ-ម្ហូប​អាហារ</p>
+        </a>
+    </div>
+</section>

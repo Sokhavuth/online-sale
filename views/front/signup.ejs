@@ -1,0 +1,66 @@
+<!--views/front/signup.ejs-->
+<link rel="stylesheet" href="/styles/front/signup.css" />
+
+<section class="Signup">
+    <div class="outer">
+        <div class="title">ចុះ​ឈ្មោះ​ផ្សាយ​លក់​ផលិតផល</div>
+        <form action="/signup" method="post">
+            <a></a><div class="fb-login-button" data-width="100%" 
+            data-size="large" data-button-type="continue_with" 
+            data-layout="default" data-auto-logout-link="false" 
+            data-use-continue-as="false" 
+            onlogin="checkLoginState()"
+            ></div>
+            <a>ឈ្មោះ​អ្នក​ប្រើប្រាស់ៈ</a><input type="text" name="title" required  />
+            <a>Email:</a><input type="email" name="email" required  />
+            <a>ពាក្យ​សំងាត់ៈ</a><input type="password" name="password" minlength="8" required />
+            <a>បញ្ជាក់​ពាក្យ​សំងាត់ៈ</a><input type="password" name="password1" minlength="8" required />
+            <a>តំណរ​ភ្ជាប់​រូប​តំណាងៈ</a><input type="text" name="thumb" placeholder="មិន​ចាំបាច់" />
+            <a></a><input type="submit" value="បញ្ជូន" />
+            <a></a><div class="info"><%= data.message %></div>
+        </form>
+    </div>
+</section>
+
+<script>
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            if(response.authResponse.accessToken){
+                FB.api('/me',function(user) {
+                    const fbuser = {
+                        id: user.id,
+                        name: user.name, 
+                    }
+                
+                    $.post('/signup/fbuser',fbuser,function(data, status){
+                        alert(data.message)
+                        if(data.redirect){
+                            window.location.href = data.redirect
+                        }
+                    })
+                })
+            }else{
+                alert('​​​​​​​មានបញ្ហា​មិន​អាច​ចុះ​ឈ្មោះ​បាន')
+            }
+        })
+    }
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '3245867309046703',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v14'
+        })
+        
+        FB.AppEvents.logPageView(); 
+    }
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0]
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id
+       js.src = "https://connect.facebook.net/en_US/sdk.js"
+       fjs.parentNode.insertBefore(js, fjs)
+     }(document, 'script', 'facebook-jssdk'))
+  </script>

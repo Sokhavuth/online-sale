@@ -1,0 +1,26 @@
+<!--views/front/search.ejs-->
+<link rel="stylesheet" href="/styles/front/search.css" />
+
+<section class="Search">
+    <% if(data.items){ %>
+        <ul class="newest">
+            <% for(let item of data.items){ %>
+            <li class="item">
+                <a class="thumb" href="/post/<%= item.id %>">
+                    <img src="<%= item.thumb %>" />
+                    <% if((item.video)&&(item.video !== '[]')){ %>
+                    <img class="play-icon" src="/images/play.png"/>
+                    <% } %>
+                </a>
+                <div>
+                    <a class="title" href="/post/<%= item.id %>">
+                        <%= item.title %>
+                    </a>
+                    <p class="price">$<%= item.price %></p>
+                    <p class="postdate"><%= (new Date(item.postdate)).toLocaleDateString('it-IT') %></p>
+                </div>
+            </li>
+            <% } %>
+        </ul>
+    <% } %>
+</section>

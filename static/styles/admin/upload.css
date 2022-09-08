@@ -1,0 +1,17 @@
+/* static/styles/admin/upload.css */
+.Upload form{
+    display: grid;
+    grid-template-columns: 50%;
+    grid-gap: 3px;
+}
+
+.Upload form input{
+    font: var(--body-font);
+    padding: 2px 5px;
+}
+
+.Upload form input[type="file"]{
+    padding: 0;
+    color: black;
+    background: white;
+}

@@ -1,0 +1,53 @@
+<!--views/admin/user.ejs-->
+<link rel="stylesheet" href="/styles/admin/user.css" />
+<script src="/scripts/ckeditor/ckeditor.js"></script>
+
+<section class="User">
+    <% if(data.item){ %>
+    <form action="/admin/user/edit/<%=data.item.id %>" method="post">
+        <input type="text" name="title" value="<%= data.item.title %>"
+        required placeholder="ឈ្មោះ​អ្នក​ប្រើប្រាស់" />
+        <textarea name="content" id="editor"><%= data.item.content %></textarea>
+        <div class="wrapper">
+            <input type="text" name="thumb" value="<%= data.item.thumb %>"
+            required placeholder="តំណរ​ភ្ជាប់​រូប​តំណាង" />
+            <input type="datetime-local" name="datetime" value="<%= data.item.postdate %>" 
+            required />
+            <select name="category" class="category">
+                <option>Author</option>
+                <% if(data.user.role === 'Admin'){ %>
+                <option>Editor</option>
+                <option>Admin</option>
+                <% } %>
+            </select>
+            <script>$(".category").val("<%= data.item.role %>").change()</script>
+            <input type="email" name="email" value="<%= data.item.email %>"
+            required placeholder="Email" />
+            <input type="password" name="password" value="<%= data.item.password %>" 
+            minlength="8" required />
+            <input type="submit" value="បញ្ជូន" />
+        </div>
+    </form>
+    <% delete data.item %>
+    <% }else{ %>
+    <form action="/admin/user" method="post">
+        <input type="text" name="title" required placeholder="ឈ្មោះ​អ្នក​ប្រើប្រាស់" />
+        <textarea name="content" id="editor"></textarea>
+        <div class="wrapper">
+            <input type="text" name="thumb" required placeholder="តំណរ​ភ្ជាប់​រូប​តំណាង" />
+            <input type="datetime-local" name="datetime" required />
+            <select name="category" id="category">
+                <option>Author</option>
+                <% if(data.user.role === 'Admin'){ %>
+                <option>Editor</option>
+                <option>Admin</option>
+                <% } %>
+            </select>
+            <input type="email" name="email" required placeholder="Email" />
+            <input type="password" name="password" minlength="8" required />
+            <input type="submit" value="បញ្ជូន" />
+        </div>
+    </form>
+    <% } %>
+</section>
+<script src="/scripts/ckeditor/config.js"></script>

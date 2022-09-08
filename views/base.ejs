@@ -1,0 +1,30 @@
+<!--views/base.ejs-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title><%= data.siteTitle %> | <%= data.pageTitle %></title>
+        <link href="/images/siteLogo.png" rel="icon" />
+        <link href="/styles/base.css" rel="stylesheet" />
+        <link href="/fonts/setup.css" rel="stylesheet" />
+        <script src="/scripts/jquery.js"></script>
+    </head>
+    <body>
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0&appId=3245867309046703&autoLogAppEvents=1" nonce="jPtQpgvG"></script>
+        
+        <% if(data.route === '/signup'){ %>
+            <%- include('./front/signup.ejs') %>
+        <% }else if(data.route === '/signup/confirm'){ %>
+            <%- include('./front/confirm.ejs') %>
+        <% }else if(data.route === '/login'){ %>
+            <%- include('./front/login.ejs') %>
+        <% }else if(data.route.includes('/admin/')){ %>
+            <%- include('./admin/index.ejs') %>
+        <% }else if(data.route.includes('/')){ %>
+            <%- include('./front/index.ejs') %>
+        <% } %>
+        <script id="dsq-count-scr" src="//khmer-web-sale.disqus.com/count.js" async></script>
+    </body>
+</html>

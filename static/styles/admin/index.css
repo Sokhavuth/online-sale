@@ -1,0 +1,159 @@
+/* static/admin/index.css */
+.Header{
+    background: var(--background-dark);
+    color: white;
+    padding: 5px 0;
+    border-bottom: 7px solid white;
+    margin-bottom: 20px;
+}
+
+.Header .wrapper{
+    display: grid;
+    grid-template-columns: 25% auto 25%;
+    align-items: center;
+}
+
+.Header .logo{
+    font: 25px/1.5 Oswald, Limonf3;
+}
+
+.Header form{
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+}
+
+.Header form input,.Header form select{
+    font: var(--body-font);
+    padding: 2px 5px;
+}
+
+.Header .logout{
+    text-align: right;
+}
+
+.Header .logout a{
+    color: white;
+}
+
+.Main .wrapper{
+    display: grid;
+    grid-template-columns: 25% auto;
+}
+
+.Main .wrapper .sidebar{
+    background: var(--background);
+    margin-right: 10px;
+    min-height: 400px;
+}
+
+.Main .wrapper .sidebar .inner{
+    padding: 20px;
+}
+
+.Main .wrapper .sidebar .inner{
+    display: grid;
+    grid-template-columns: 25% auto;
+    align-items: center;
+    grid-gap: 10px;
+}
+
+.Main .wrapper .sidebar .inner img{
+    width: 100%;
+}
+.Main .wrapper .sidebar .inner .title{
+    font: 18px/1.5 Oswald, Koulen;
+    color: black;
+}
+
+.Footer{
+    margin-top: 10px;
+}
+
+.Footer .info{
+    background: var(--background);
+    text-align: center;
+    padding: 10px;
+}
+
+.Footer ul{
+    display: grid;
+    grid-template-columns: calc(50% - 5px ) calc(50% - 5px );
+    grid-gap: 10px;
+    padding-top: 10px;
+}
+
+.Footer ul li{
+    display: grid;
+    grid-template-columns: 25% auto 20%;
+    align-items: center;
+    background: var(--background);
+}
+
+.Footer ul li .thumb{
+    position: relative;
+    padding-top: 56.25%;
+}
+
+.Footer ul li .thumb a{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.Footer ul li .thumb img{
+    width: 100%;
+    height: 100%;
+}
+
+.Footer ul li .thumb .play-icon{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25%;
+    height: auto;
+    transform: translate(-50%,-50%);
+}
+
+.Footer ul li .title{
+    padding-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Footer ul li .title a{
+    color: black;
+}
+
+.Footer ul li .edit{
+    text-align: right;
+    padding-right: 10px;
+    visibility: hidden;
+}
+
+.Footer ul li:hover .edit{
+    visibility: visible;
+}
+
+.Footer ul li .edit img{
+    width: 45px;
+}
+
+.Footer .pagination{
+    text-align: center;
+    background: var(--background);
+    margin: 10px auto 20px;
+    padding: 5px 0 0;
+}
+
+.Footer .pagination img:hover{
+    cursor: pointer;
+    opacity: .7;
+}
+
+.Footer .credit{
+    text-align: center;
+    padding: 0 0 20px;
+}

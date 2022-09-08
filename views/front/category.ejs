@@ -1,0 +1,25 @@
+<!--views/front/category.ejs-->
+<link rel="stylesheet" href="/styles/front/category.css" />
+<script src="/scripts/category.js"></script>
+
+<section class="Content">
+    <% if(data.items.length > 0){ %>
+    <div class="outer">
+        <% for(let item of data.items){ %>
+        <a href="/post/<%= item.id %>">
+            <img src="<%= item.thumb %>" />
+            <% if((item.video)&&(item.video !== '[]')){ %>
+                <img class="play-icon" src="/images/play.png"/>
+            <% } %>
+            <p class="date"><%= (new Date(item.postdate)).toLocaleDateString('it-IT') %></p>
+            <p><%= item.title %></p>
+        </a>
+        <% } %> 
+    </div>
+    <div class="pagination">
+        <img onclick="navigate.getItem(-1,'<%= data.name %>')" src="/images/left.png" />
+        <img class="home" onclick="navigate.getItem(0,'<%= data.name %>')" src="/images/home.png" />
+        <img onclick="navigate.getItem(1,'<%= data.name %>')" src="/images/right.png" />
+    </div>
+    <% } %>
+</section>

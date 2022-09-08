@@ -1,0 +1,90 @@
+/* static/styles/front/Header.css */
+.Header .outer{
+    background: var(--background-dark);
+    color: white;
+    padding: 5px 0;
+    border-bottom: 8px solid white;
+    margin-bottom: 30px;
+} 
+
+.Header .outer .header{
+    display: grid;
+    grid-template-columns: 25% auto 20%;
+    align-items: center;
+}
+
+.Header .outer .header .logo a{
+    font: 35px/1.5 StardosStencil, Limonf3;
+    color: white;
+}
+
+.Header .outer .header form{
+    display: grid;
+    grid-template-columns: 23% auto 20%;
+}
+
+.Header .outer .header form input,
+.Header .outer .header form select{
+    font: var(--body-font);
+    padding: 2px 5px;
+}
+
+.Header .outer .header .signup{
+    text-align: right;
+}
+
+.Header .outer .header .signup a{
+    color: white;
+    font-size: 16px;
+}
+
+.Footer{
+    background: var(--background);
+    padding: 20px 0;
+}
+
+.Footer .outer{
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    padding-bottom: 20px;
+}
+
+.Footer .outer div .title{
+    font: 18px/1.5 Oswald, Koulen;
+    padding-bottom: 15px;
+}
+
+.Footer .outer div ul{
+    list-style-position: inside;
+}
+
+.Footer .credit{
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid grey;
+}
+
+.Footer .credit a{
+    color: black;
+}
+
+@media only screen and (max-width: 600px){
+    .Header .outer .header{
+        grid-template-columns: 100%;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .Header .outer .header .signup{
+        text-align: center;
+    }
+
+    .Footer .outer{
+        grid-template-columns: 100%;
+        padding: 0 10px;
+    }
+
+    .Footer .outer div{
+        padding-bottom: 15px;
+    }
+}
